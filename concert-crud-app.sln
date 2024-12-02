@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "concert-crud-app", "concert-crud-app.csproj", "{D3E79C19-6195-48FF-8C1A-8D43D89B25CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3E79C19-6195-48FF-8C1A-8D43D89B25CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3E79C19-6195-48FF-8C1A-8D43D89B25CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3E79C19-6195-48FF-8C1A-8D43D89B25CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3E79C19-6195-48FF-8C1A-8D43D89B25CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2BFD9442-ED0D-4297-9BFD-639DC1A3D03E}
+	EndGlobalSection
+EndGlobal
