@@ -120,37 +120,66 @@ public class Concert
             // List to store updated lines
             List<string> updatedFileText = new List<string>();
 
-            for (int i = 0; i < lines.Length; i++)
+            var isDeleted = false;
+
+            // handle if there is only one line in the file
+            if (lines.Length == 1)
             {
+
                 // Split the line with a comma and find the concert name.
-                var parts = lines[i].Split(",");
+                var parts = lines[0].Split(",");
                 if (parts.Length > 0)
                 {
                     string concertName = parts[0].Trim();
 
                     // Add the line to updatedFileText if the concert name doesn't match
-                    if (!concertName.Equals(name, StringComparison.OrdinalIgnoreCase))
+                    if (concertName.Equals(name, StringComparison.OrdinalIgnoreCase))
                     {
-                        updatedFileText.Add(lines[i]);
+                        isDeleted = true;
+                    }
+                }
+
+            }
+
+            if (lines.Length > 1)
+            {
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    // Split the line with a comma and find the concert name.
+                    var parts = lines[i].Split(",");
+                    if (parts.Length > 0)
+                    {
+                        string concertName = parts[0].Trim();
+
+                        // Add the line to updatedFileText if the concert name doesn't match
+                        if (!concertName.Equals(name, StringComparison.OrdinalIgnoreCase))
+                        {
+                            updatedFileText.Add(lines[i]);
+                        }
+                        else
+                        {
+                            isDeleted = true;
+                        }
                     }
                 }
             }
 
             // Replace the file with the new content
-            if (updatedFileText.Count > 0)
+            if (isDeleted)
             {
                 File.WriteAllLines(filePath, updatedFileText);
+
+                Console.WriteLine($"Concert : {name} deleted successfully! Press Enter to continue.");
             }
             else
             {
-                Console.WriteLine("No lines to write. File will not be updated.");
+                Console.WriteLine($"The concert name {name} does not exist.");
             }
-
-
         }
         catch (IOException e)
         {
-            Console.WriteLine("The file could not be read:");
+            Console.WriteLine($"The concert name {name} does not exist.");
             Console.WriteLine(e.Message);
         }
     }
@@ -193,7 +222,6 @@ public class Concert
         string concertName = Console.ReadLine();
 
         // Read concerts from File
-        // GetConcert(concertName);
         Concert foundConcert = ReadConcert(concertName);
         // check if not empty
         Console.WriteLine($"Name = {foundConcert.Name}, Venue = {foundConcert.Venue}, Time = {foundConcert.DateTime}, Capacity = {foundConcert.Capacity}");
@@ -235,7 +263,7 @@ public class Concert
         }
 
         var cocnertData = $"{concertName}, {concertVenue}, {concertTime}, {concertCepacity}";
-        
+
         UpdateConcertToFile(name, cocnertData);
 
         Console.WriteLine($"Name = {old.Name}, Venue = {old.Venue}, Time = {old.DateTime}, Capacity = {old.Capacity}");
@@ -248,7 +276,6 @@ public class Concert
         if (concertName != null)
         {
             DeleteConcertFromFile(concertName);
-            Console.WriteLine($"Concert : {concertName} deleted successfully! Press Enter to continue.");
         }
         else
         {
